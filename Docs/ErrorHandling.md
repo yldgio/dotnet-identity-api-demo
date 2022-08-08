@@ -46,6 +46,31 @@ public class ErrorHandlingMiddleware
 
 ## Exception Filter
 
+introducing ErrorHandlingFilterAttribute
+```csharp
+
+//new class
+public class ErrorHandlingFilterAttribute : ExceptionFilterAttribute
+{
+    public override void OnException(ExceptionContext context)
+    {
+        if (context.Exception is null)
+        {
+            return;
+        }
+        context.Result = new ObjectResult(new { error = context.Exception.Message })
+        {
+            StatusCode = (int)HttpStatusCode.InternalServerError
+        };
+        context.ExceptionHandled = true;
+    }
+}
+
+//in program.cs
+    builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
+
+```
+
 ## Problem Details
 
 ## Error Endpoint
