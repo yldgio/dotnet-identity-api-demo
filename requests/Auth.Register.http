@@ -1,0 +1,9 @@
+POST {{host}}/{{auth_path}}/register
+Content-Type: application/json
+
+{
+    "firstName": "Giovanni",
+    "lastName": "demo",
+    "username": "giovanni@test.demo",
+    "password": "somepwd"
+}

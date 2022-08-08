@@ -1,0 +1,15 @@
+{
+    "rest-client.environmentVariables": {
+
+        "$shared": {
+            "auth_path":"auth"
+        },
+        "dev":{
+            "host":"https://localhost:7239"
+        },
+        "test":{
+            "host":"https://localhost:7239"
+        }
+
+    }
+}

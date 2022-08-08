@@ -1,0 +1,7 @@
+POST {{host}}/{{auth_path}}/login
+Content-Type: application/json
+
+{
+    "username": "giovanni@test.demo",
+    "password": "somepwd"
+}
