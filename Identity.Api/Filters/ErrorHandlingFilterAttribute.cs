@@ -1,10 +1,12 @@
 using System.Net;
 
+using Identity.Api.Extensions;
+
+using Microsoft.AspNetCore.Http.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-
 namespace Identity.Api.Filters;
 
 public class ErrorHandlingFilterAttribute : ExceptionFilterAttribute
@@ -15,15 +17,8 @@ public class ErrorHandlingFilterAttribute : ExceptionFilterAttribute
         {
             return;
         }
-        var problemDetails = new ProblemDetails
-        {
-            Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1",
-            Title = "Error processing your request",
-            Instance = context.HttpContext.Request.Path,
-            Status = (int)HttpStatusCode.InternalServerError,
-            Detail = context.Exception.Message
-        };
-        context.Result = new ObjectResult(problemDetails);
+
+        context.Result = new ObjectResult(context.HttpContext.ProblemDetails(context.Exception));
         context.ExceptionHandled = true;
     }
 }

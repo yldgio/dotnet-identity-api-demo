@@ -1,5 +1,7 @@
 using Identity.Api.Domain;
+using Identity.Api.Filters;
 using Identity.Api.Infrastructure;
+using Identity.Api.Middleware;
 //using Identity.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
