@@ -113,7 +113,7 @@ Date: Wed, 07 Aug 2019 10:10:06 GMT
 ```
 ## Error Endpoint (exception handler feature)
 
-use exception handler with custom route handler:
+use exception handler with custom route handler (error endpoint):
 
 ```csharp
 //in Program.cs add:
@@ -134,7 +134,9 @@ public class ErrorsController : ControllerBase
     {
         //how to access Error:
         Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+        //ControllerBase class has helper methods to support ProblemDetails creation
         //custom status code: Problem(statusCode: 400)
+
         return Problem(detail: exception?.Message);
 
     }
