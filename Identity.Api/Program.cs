@@ -1,11 +1,5 @@
-using System;
-using System.Runtime.Intrinsics.X86;
-
 using Identity.Api.Domain;
-using Identity.Api.Filters;
 using Identity.Api.Infrastructure;
-
-using Microsoft.AspNetCore.Diagnostics;
 //using Identity.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);

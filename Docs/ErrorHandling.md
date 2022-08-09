@@ -111,8 +111,9 @@ HTTP/1.1 401 Unauthorized
 Content-Type: application/problem+json; charset=utf-8
 Date: Wed, 07 Aug 2019 10:10:06 GMT
 ```
-## Error Endpoint (exception handler feature)
+## Error Endpoint
 
+**exception handler feature**
 use exception handler with custom route handler (error endpoint):
 
 ```csharp
