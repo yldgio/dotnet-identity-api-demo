@@ -1,4 +1,6 @@
 using System.Net;
+
+using Identity.Api.Domain.Common.Errors;
 using Identity.Api.Domain.Common.Interfaces;
 using Identity.Api.Domain.Entities;
 
@@ -48,7 +50,7 @@ public class AuthService : IAuthService
         // check if user exists
         if (_userRepository.GetUser(Username) is not null)
         {
-            throw new Exception("User already exists");
+            throw new DuplicateUsernameException();
         }
         var user = new User
         {

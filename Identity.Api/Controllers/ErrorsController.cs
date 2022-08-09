@@ -1,3 +1,7 @@
+using System.Net;
+
+using Identity.Api.Domain.Common.Errors;
+
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +11,13 @@ public class ErrorsController : ControllerBase
     [Route("/error")]
     public IActionResult Error()
     {
-        //how to access Error:
         Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
-        //custom status code: Problem(statusCode: 400)
-        return Problem(detail: exception?.Message);
+        var (statusCode, message) = exception switch
+        {
+            IDomainException domainException => (domainException.StatusCode, domainException.ErrorMessage),
+            _ => (HttpStatusCode.InternalServerError, "an error occurred.")
+        };
 
+        return Problem(title: message, statusCode: (int)statusCode);
     }
 }
