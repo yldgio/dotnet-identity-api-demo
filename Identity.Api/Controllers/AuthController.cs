@@ -34,7 +34,16 @@ public class AuthController : ControllerBase
         var result = _authService.Register(
             request.FirstName, request.LastName, request.Username,
             request.Password);
-        return Ok(MapAuthResult(result));
+        if (result.IsSuccess)
+        {
+            return Ok(MapAuthResult(result.Value));
+        }
+        var error = result.Errors.FirstOrDefault();
+        if (error is DuplicateUsernameError)
+        {
+            return Problem(statusCode: StatusCodes.Status409Conflict, title: error.Message);
+        }
+        return Problem();
     }
 
     private static AuthResponse MapAuthResult(AuthenticationResult result)

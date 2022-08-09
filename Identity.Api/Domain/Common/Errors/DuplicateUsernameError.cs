@@ -1,11 +1,11 @@
 using System.Net;
 
+using FluentResults;
+
 namespace Identity.Api.Domain.Common.Errors;
 
-public class DuplicateUsernameError : IError
+public class DuplicateUsernameError : Error
 {
-    public string ErrorMessage => "Username already exists";
-
-    public HttpStatusCode StatusCode => HttpStatusCode.Conflict;
-
+    public DuplicateUsernameError() : base("Username already exists")
+    { }
 }

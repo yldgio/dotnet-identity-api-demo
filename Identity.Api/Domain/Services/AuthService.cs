@@ -1,3 +1,6 @@
+using FluentResults;
+
+using Identity.Api.Domain.Common.Errors;
 using Identity.Api.Domain.Common.Exceptions;
 using Identity.Api.Domain.Common.Interfaces;
 using Identity.Api.Domain.Entities;
@@ -7,7 +10,7 @@ namespace Identity.Api.Domain.Services;
 public interface IAuthService
 {
     AuthenticationResult Login(string Username, string Password);
-    AuthenticationResult Register(string FirstName, string LastName, string Username, string Password);
+    Result<AuthenticationResult> Register(string FirstName, string LastName, string Username, string Password);
 }
 
 public class AuthService : IAuthService
@@ -43,12 +46,12 @@ public class AuthService : IAuthService
             Token: token);
     }
 
-    public AuthenticationResult Register(string FirstName, string LastName, string Username, string Password)
+    public Result<AuthenticationResult> Register(string FirstName, string LastName, string Username, string Password)
     {
         // check if user exists
         if (_userRepository.GetUser(Username) is not null)
         {
-            throw new DuplicateUsernameException();
+            return Result.Fail<AuthenticationResult>(new[] { new DuplicateUsernameError() });
         }
         var user = new User
         {
