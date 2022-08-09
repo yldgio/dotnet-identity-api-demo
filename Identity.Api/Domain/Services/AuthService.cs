@@ -1,6 +1,4 @@
-using System.Net;
-
-using Identity.Api.Domain.Common.Errors;
+using Identity.Api.Domain.Common.Exceptions;
 using Identity.Api.Domain.Common.Interfaces;
 using Identity.Api.Domain.Entities;
 
