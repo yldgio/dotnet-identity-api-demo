@@ -1,7 +1,9 @@
 namespace Identity.Api.Controllers;
 
+using Identity.Api.Domain.Common.Errors;
 using Identity.Api.Domain.Services;
 using Identity.Contracts.Auth;
+
 using Microsoft.AspNetCore.Mvc;
 
 [Route("[controller]")]
@@ -22,12 +24,7 @@ public class AuthController : ControllerBase
             request.Username,
             request.Password);
 
-        var response = new AuthResponse(
-            Id: result.User.Id,
-            Username: result.User.Username,
-            FirstName: result.User.FirstName,
-            LastName: result.User.LastName,
-            Token: result.Token);
+        var response = MapAuthResult(result);
         return Ok(response);
     }
 
@@ -37,13 +34,16 @@ public class AuthController : ControllerBase
         var result = _authService.Register(
             request.FirstName, request.LastName, request.Username,
             request.Password);
+        return Ok(MapAuthResult(result));
+    }
 
-        var response = new AuthResponse(
+    private static AuthResponse MapAuthResult(AuthenticationResult result)
+    {
+        return new AuthResponse(
             Id: result.User.Id,
             Username: result.User.Username,
             FirstName: result.User.FirstName,
             LastName: result.User.LastName,
             Token: result.Token);
-        return Ok(response);
     }
 }
