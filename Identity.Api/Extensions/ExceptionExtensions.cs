@@ -1,6 +1,6 @@
 using System.Net;
 
-using Identity.Api.Domain.Common.Errors;
+using Identity.Api.Domain.Common.Exceptions;
 
 using Microsoft.AspNetCore.Http.Abstractions;
 using Microsoft.AspNetCore.Mvc;
