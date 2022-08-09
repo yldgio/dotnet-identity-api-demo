@@ -111,4 +111,47 @@ HTTP/1.1 401 Unauthorized
 Content-Type: application/problem+json; charset=utf-8
 Date: Wed, 07 Aug 2019 10:10:06 GMT
 ```
-## Error Endpoint
+## Error Endpoint (exception handler feature)
+
+use exception handler with custom route handler:
+
+```csharp
+//in Program.cs add:
+    app.UseExceptionHandler(errorHandlingPath: "/error");
+```
+
+then add a controller/action handler the response, ex:
+
+```csharp
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Identity.Api.Controllers;
+public class ErrorsController : ControllerBase
+{
+    [Route("/error")]
+    public IActionResult Error()
+    {
+        //how to access Error:
+        Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+        //custom status code: Problem(statusCode: 400)
+        return Problem(detail: exception?.Message);
+
+    }
+}
+```
+
+alternatively we can map the handler locally:
+
+```csharp
+
+    app.Map("/error", (HttpContext context) =>
+    {
+        //accessing the exception
+        Exception? exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+        //no dependency injection
+        //the Results Problem factory allows you to pass Extensions to customize the return values
+        return Results.Problem();
+    });
+```
+
