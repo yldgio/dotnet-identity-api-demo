@@ -1,8 +1,12 @@
 namespace Identity.Api.Controllers;
 
+using Identity.Api.Domain.Common.Errors;
 using Identity.Api.Domain.Services;
 using Identity.Contracts.Auth;
+
 using Microsoft.AspNetCore.Mvc;
+
+using OneOf;
 
 [Route("[controller]")]
 [ApiController]
@@ -22,28 +26,29 @@ public class AuthController : ControllerBase
             request.Username,
             request.Password);
 
-        var response = new AuthResponse(
-            Id: result.User.Id,
-            Username: result.User.Username,
-            FirstName: result.User.FirstName,
-            LastName: result.User.LastName,
-            Token: result.Token);
+        var response = MapAuthResult(result);
         return Ok(response);
     }
 
     [HttpPost("register")]
     public IActionResult Register(RegisterRequest request)
     {
-        var result = _authService.Register(
+        OneOf<AuthenticationResult, IError> result = _authService.Register(
             request.FirstName, request.LastName, request.Username,
             request.Password);
+        return result.Match(
+            authResult => Ok(MapAuthResult(authResult)),
+            error => Problem(statusCode: (int?)error.StatusCode, title: error.ErrorMessage)
+        );
+    }
 
-        var response = new AuthResponse(
+    private static AuthResponse MapAuthResult(AuthenticationResult result)
+    {
+        return new AuthResponse(
             Id: result.User.Id,
             Username: result.User.Username,
             FirstName: result.User.FirstName,
             LastName: result.User.LastName,
             Token: result.Token);
-        return Ok(response);
     }
 }

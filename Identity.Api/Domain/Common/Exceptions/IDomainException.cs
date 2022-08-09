@@ -1,5 +1,5 @@
 using System.Net;
-namespace Identity.Api.Domain.Common.Errors;
+namespace Identity.Api.Domain.Common.Exceptions;
 
 public interface IDomainException
 {
