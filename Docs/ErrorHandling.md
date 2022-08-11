@@ -127,7 +127,7 @@ then add a controller/action handler the response, ex:
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Identity.Api.Controllers;
+namespace Identity.Api.Presentation.Controllers;
 public class ErrorsController : ControllerBase
 {
     [Route("/error")]

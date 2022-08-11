@@ -2,7 +2,7 @@ using ErrorOr;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace Identity.Api.Controllers;
+namespace Identity.Api.Presentation.Controllers;
 [ApiController]
 public class ApiController : ControllerBase
 {

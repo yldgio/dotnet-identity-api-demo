@@ -1,4 +1,4 @@
-namespace Identity.Api.Controllers;
+namespace Identity.Api.Presentation.Controllers;
 
 using ErrorOr;
 
