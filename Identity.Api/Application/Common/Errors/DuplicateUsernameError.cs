@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Identity.Api.Domain.Common.Errors;
+namespace Identity.Api.Application.Common.Errors;
 
 public class DuplicateUsernameError
 {

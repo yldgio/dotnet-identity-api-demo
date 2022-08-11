@@ -1,4 +1,4 @@
-using Identity.Api.Domain.Common.Interfaces;
+using Identity.Api.Application.Common.Interfaces;
 
 namespace Identity.Api.Infrastructure;
 public class DateTimeProvider : IDateTimeProvider

@@ -1,6 +1,6 @@
 using Identity.Api.Domain.Entities;
 
-namespace Identity.Api.Domain.Services;
+namespace Identity.Api.Authentication.Common;
 
 public record AuthenticationResult(
     User User,

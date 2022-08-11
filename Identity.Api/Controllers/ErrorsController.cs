@@ -1,6 +1,6 @@
 using System.Net;
 
-using Identity.Api.Domain.Common.Exceptions;
+using Identity.Api.Application.Common.Exceptions;
 
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,7 @@ public class ErrorsController : ControllerBase
         Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
         var (statusCode, message) = exception switch
         {
-            IDomainException domainException => (domainException.StatusCode, domainException.ErrorMessage),
+            IApplicationException domainException => (domainException.StatusCode, domainException.ErrorMessage),
             _ => (HttpStatusCode.InternalServerError, "an error occurred.")
         };
 

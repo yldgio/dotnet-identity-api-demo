@@ -1,8 +1,8 @@
 using System.Net;
 
-namespace Identity.Api.Domain.Common.Exceptions;
+namespace Identity.Api.Application.Common.Exceptions;
 
-public class DuplicateUsernameException : Exception, IDomainException
+public class DuplicateUsernameException : Exception, IApplicationException
 {
     public string ErrorMessage => "Username already exists";
 

@@ -2,28 +2,35 @@ namespace Identity.Api.Controllers;
 
 using ErrorOr;
 
-using Identity.Api.Domain.Common.Errors;
-using Identity.Api.Domain.Services;
+using Identity.Api.Application.Common.Errors;
+using Identity.Api.Authentication.Commands.Register;
+using Identity.Api.Authentication.Common;
+using Identity.Api.Authentication.Queries.Login;
 using Identity.Contracts.Auth;
+
+using MapsterMapper;
+
+using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
 
 [Route("[controller]")]
 public class AuthController : ApiController
 {
-    private readonly IAuthService _authService;
-
-    public AuthController(IAuthService authService)
+    private readonly ISender _mediator;
+    private readonly IMapper _mapper;
+    public AuthController(ISender mediator, IMapper mapper)
     {
-        _authService = authService;
+        _mediator = mediator;
+        _mapper = mapper;
     }
 
     [HttpPost("login")]
-    public IActionResult Login(LoginRequest request)
+    public async Task<IActionResult> Login(LoginRequest request)
     {
-        var result = _authService.Login(
-            request.Username,
-            request.Password);
+        var query = _mapper.Map<LoginQuery>(request);
+
+        var result = await _mediator.Send(query);
         if (result.IsError && result.FirstError == Errors.Login.InvalidCredentials)
         {
             return Problem(statusCode: StatusCodes.Status401Unauthorized,
@@ -36,11 +43,11 @@ public class AuthController : ApiController
     }
 
     [HttpPost("register")]
-    public IActionResult Register(RegisterRequest request)
+    public async Task<IActionResult> Register(RegisterRequest request)
     {
-        ErrorOr<AuthenticationResult> result = _authService.Register(
-            request.FirstName, request.LastName, request.Username,
-            request.Password);
+        var command = _mapper.Map<RegisterCommand>(request);
+
+        ErrorOr<AuthenticationResult> result = await _mediator.Send(command);
 
         return result.Match(
             authRresult => Ok(MapAuthResult(authRresult)),
@@ -49,13 +56,14 @@ public class AuthController : ApiController
         // return Ok(MapAuthResult(result));
     }
 
-    private static AuthResponse MapAuthResult(AuthenticationResult result)
+    private AuthResponse MapAuthResult(AuthenticationResult result)
     {
-        return new AuthResponse(
-            Id: result.User.Id,
-            Username: result.User.Username,
-            FirstName: result.User.FirstName,
-            LastName: result.User.LastName,
-            Token: result.Token);
+        return _mapper.Map<AuthResponse>(result);
+        // return new AuthResponse(
+        //     Id: result.User.Id,
+        //     Username: result.User.Username,
+        //     FirstName: result.User.FirstName,
+        //     LastName: result.User.LastName,
+        //     Token: result.Token);
     }
 }

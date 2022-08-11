@@ -1,6 +1,6 @@
 using ErrorOr;
 
-namespace Identity.Api.Domain.Common.Errors;
+namespace Identity.Api.Application.Common.Errors;
 
 public static partial class Errors
 {

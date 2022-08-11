@@ -1,9 +1,11 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Identity.Api.Domain.Common.Interfaces;
+
+using Identity.Api.Application.Common.Interfaces;
 using Identity.Api.Domain.Entities;
 using Identity.Api.Infrastructure.Config;
+
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 

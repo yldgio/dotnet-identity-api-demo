@@ -1,4 +1,4 @@
-using Identity.Api.Domain.Common.Interfaces;
+using Identity.Api.Application.Common.Interfaces;
 using Identity.Api.Domain.Entities;
 
 namespace Identity.Api.Infrastructure;

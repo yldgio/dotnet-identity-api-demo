@@ -1,4 +1,4 @@
-namespace Identity.Api.Domain.Common.Errors;
+namespace Identity.Api.Application.Common.Errors;
 
 public interface IError
 {

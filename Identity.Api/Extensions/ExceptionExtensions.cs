@@ -1,6 +1,6 @@
 using System.Net;
 
-using Identity.Api.Domain.Common.Exceptions;
+using Identity.Api.Application.Common.Exceptions;
 
 using Microsoft.AspNetCore.Http.Abstractions;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +13,13 @@ public static class ExceptionExtensions
     {
         var (code, message) = exception.MapToCodeAndMessage();
         var problemDetailsFactory = context.RequestServices?.GetRequiredService<ProblemDetailsFactory>();
-        return problemDetailsFactory?.CreateProblemDetails(context, statusCode: (int)code, title: message);
+        return problemDetailsFactory?.CreateProblemDetails(context, statusCode: (int)code, title: message)!;
     }
     public static (HttpStatusCode, string) MapToCodeAndMessage(this Exception exception)
     {
         return exception switch
         {
-            IDomainException domainException => (domainException.StatusCode, domainException.ErrorMessage),
+            IApplicationException domainException => (domainException.StatusCode, domainException.ErrorMessage),
             _ => (HttpStatusCode.InternalServerError, "an error occurred.")
         };
         //return (ProblemDetails)Results.Problem(statusCode: (int)statusCode, title: message);
