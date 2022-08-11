@@ -1,3 +1,6 @@
+using ErrorOr;
+
+using Identity.Api.Domain.Common.Errors;
 using Identity.Api.Domain.Common.Exceptions;
 using Identity.Api.Domain.Common.Interfaces;
 using Identity.Api.Domain.Entities;
@@ -6,8 +9,11 @@ namespace Identity.Api.Domain.Services;
 
 public interface IAuthService
 {
-    AuthenticationResult Login(string Username, string Password);
-    AuthenticationResult Register(string FirstName, string LastName, string Username, string Password);
+    ErrorOr<AuthenticationResult> Login(string Username, string Password);
+    ErrorOr<AuthenticationResult> Register(string FirstName,
+                                           string LastName,
+                                           string Username,
+                                           string Password);
 }
 
 public class AuthService : IAuthService
@@ -21,18 +27,18 @@ public class AuthService : IAuthService
         _userRepository = userRepository;
     }
 
-    public AuthenticationResult Login(string username, string password)
+    public ErrorOr<AuthenticationResult> Login(string username, string password)
     {
         // user exists
         if (_userRepository.GetUser(username) is not User user)
         {
-            throw new Exception("User not found");
+            return Errors.Login.UsernameNotFound;
         }
 
         // validate password
         if (user.Password != password)
         {
-            throw new Exception("Invalid Password");
+            return Errors.Login.InvalidCredentials;
         }
 
         // create token
@@ -43,12 +49,13 @@ public class AuthService : IAuthService
             Token: token);
     }
 
-    public AuthenticationResult Register(string FirstName, string LastName, string Username, string Password)
+    public ErrorOr<AuthenticationResult> Register(string FirstName, string LastName, string Username, string Password)
     {
         // check if user exists
         if (_userRepository.GetUser(Username) is not null)
         {
-            throw new DuplicateUsernameException();
+            // throw new DuplicateUsernameException();
+            return Errors.Registration.DuplicateUsername;
         }
         var user = new User
         {

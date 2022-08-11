@@ -1,5 +1,7 @@
 namespace Identity.Api.Controllers;
 
+using ErrorOr;
+
 using Identity.Api.Domain.Common.Errors;
 using Identity.Api.Domain.Services;
 using Identity.Contracts.Auth;
@@ -7,8 +9,7 @@ using Identity.Contracts.Auth;
 using Microsoft.AspNetCore.Mvc;
 
 [Route("[controller]")]
-[ApiController]
-public class AuthController : ControllerBase
+public class AuthController : ApiController
 {
     private readonly IAuthService _authService;
 
@@ -23,18 +24,29 @@ public class AuthController : ControllerBase
         var result = _authService.Login(
             request.Username,
             request.Password);
-
-        var response = MapAuthResult(result);
-        return Ok(response);
+        if (result.IsError && result.FirstError == Errors.Login.InvalidCredentials)
+        {
+            return Problem(statusCode: StatusCodes.Status401Unauthorized,
+                           title: result.FirstError.Description);
+        }
+        return result.Match(
+            authRresult => Ok(MapAuthResult(authRresult)),
+            errors => Problem(errors)
+        );
     }
 
     [HttpPost("register")]
     public IActionResult Register(RegisterRequest request)
     {
-        var result = _authService.Register(
+        ErrorOr<AuthenticationResult> result = _authService.Register(
             request.FirstName, request.LastName, request.Username,
             request.Password);
-        return Ok(MapAuthResult(result));
+
+        return result.Match(
+            authRresult => Ok(MapAuthResult(authRresult)),
+            errors => Problem(errors)
+        );
+        // return Ok(MapAuthResult(result));
     }
 
     private static AuthResponse MapAuthResult(AuthenticationResult result)

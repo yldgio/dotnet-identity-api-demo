@@ -9,6 +9,7 @@
     <ProjectReference Include="..\Identity.Contracts\Identity.Contracts.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ErrorOr" Version="0.2.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.22.0" />
   </ItemGroup>
 </Project>
