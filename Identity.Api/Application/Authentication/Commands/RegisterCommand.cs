@@ -1,10 +1,10 @@
 using ErrorOr;
 
-using Identity.Api.Authentication.Common;
+using Identity.Api.Application.Authentication.Common;
 
 using MediatR;
 
-namespace Identity.Api.Authentication.Commands.Register;
+namespace Identity.Api.Application.Authentication.Commands.Register;
 
 public record RegisterCommand(
     string FirstName,

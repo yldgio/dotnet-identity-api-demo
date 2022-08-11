@@ -1,9 +1,9 @@
 using ErrorOr;
 
+using Identity.Api.Application.Authentication.Common;
 using Identity.Api.Application.Common.Errors;
 using Identity.Api.Application.Common.Exceptions;
 using Identity.Api.Application.Common.Interfaces;
-using Identity.Api.Authentication.Common;
 using Identity.Api.Domain.Entities;
 
 namespace Identity.Api.Application.Services.Queries;
