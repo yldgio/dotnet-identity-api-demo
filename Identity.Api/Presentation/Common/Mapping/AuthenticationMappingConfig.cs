@@ -5,7 +5,7 @@ using Identity.Contracts.Auth;
 
 using Mapster;
 
-namespace Identity.Api.Common.Mapping;
+namespace Identity.Api.Presentation.Common.Mapping;
 
 public class AuthenticationMappingConfig : IRegister
 {
