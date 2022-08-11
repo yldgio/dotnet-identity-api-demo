@@ -1,4 +1,4 @@
-using Identity.Api.Presentation.Common;
+using Identity.Api.Presentation;
 
 namespace Identity.Api;
 

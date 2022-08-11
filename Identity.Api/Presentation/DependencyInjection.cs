@@ -4,7 +4,7 @@ using Mapster;
 
 using MapsterMapper;
 
-namespace Identity.Api.Presentation.Common;
+namespace Identity.Api.Presentation;
 
 
 public static class DependencyInjection
