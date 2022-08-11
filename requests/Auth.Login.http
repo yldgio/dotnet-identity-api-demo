@@ -5,3 +5,23 @@ Content-Type: application/json
     "username": "giovanni@test.demo",
     "password": "somepwd"
 }
+
+### error invalid username
+
+POST {{host}}/{{auth_path}}/login
+Content-Type: application/json
+
+{
+    "username": "giovanni@test.dem",
+    "password": "somepwd"
+}
+
+### error invalid creds
+
+POST {{host}}/{{auth_path}}/login
+Content-Type: application/json
+
+{
+    "username": "giovanni@test.demo",
+    "password": "wrongpwd"
+}
