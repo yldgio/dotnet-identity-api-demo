@@ -1,9 +1,10 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 export const options = {
-    vus: 10,
-    duration: '1m',
-    insecureSkipTLSVerify: true
+    vus: 1,
+    duration: '30s',
+    insecureSkipTLSVerify: true,
+    noConnectionReuse: false
 };
 
 export default function () {
@@ -23,5 +24,5 @@ export default function () {
     check(res, {
         'is status 400': (r)=> r.status == 409,
     });
-    // sleep(1);
+    sleep(1);
 }

@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "username": "giovanni@test.demo",
-    "password": "somepwd"
+    "password": "S0meValidpa$$wd"
 }
 
 ### error invalid username
