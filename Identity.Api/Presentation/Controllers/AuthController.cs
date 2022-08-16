@@ -2,7 +2,7 @@ namespace Identity.Api.Presentation.Controllers;
 
 using ErrorOr;
 
-using Identity.Api.Application.Authentication.Commands.Register;
+using Identity.Api.Application.Authentication.Commands;
 using Identity.Api.Application.Authentication.Common;
 using Identity.Api.Application.Authentication.Queries.Login;
 using Identity.Api.Application.Common.Errors;

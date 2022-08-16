@@ -4,7 +4,7 @@ using Identity.Api.Application.Authentication.Common;
 
 using MediatR;
 
-namespace Identity.Api.Application.Authentication.Commands.Register;
+namespace Identity.Api.Application.Authentication.Commands;
 
 public record RegisterCommand(
     string FirstName,
