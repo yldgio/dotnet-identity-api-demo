@@ -30,3 +30,8 @@ Load test result for Result flow
 [FluentResults](https://github.com/altmann/FluentResults)
 
 - [https://medium.com/@michael_altmann/error-handling-returning-results-2b88b5ea11e9](https://medium.com/@michael_altmann/error-handling-returning-results-2b88b5ea11e9)
+
+### Using ErrorOr
+
+A simple, fluent discriminated union of an error or a result.
+[ErrorOr](https://github.com/amantinband/error-or)
