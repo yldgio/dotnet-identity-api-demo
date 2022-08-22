@@ -8,7 +8,7 @@ export const options = {
 };
 
 export default function () {
-    const url = 'https://localhost:7239/auth/register';
+    const url = 'https://localhost:7257/auth/register';
     const payload = JSON.stringify({
         "firstName": "Giovanni",
         "lastName": "demo",

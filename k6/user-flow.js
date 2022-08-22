@@ -41,7 +41,7 @@ export default function () {
 //   console.log(`login: ${login}`);
   group('simple user journey', (_) => {
     // register request
-    const register_response = http.post('https://localhost:7239/auth/register', registration, params);
+    const register_response = http.post('https://localhost:7257/auth/register', registration, params);
     check(register_response, {
         'is status 200': (r) => r.status === 200,
         'is token present': (r) => r.json().hasOwnProperty('token'),
