@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 {
     app.UseExceptionHandler(errorHandlingPath: "/error");
-    app.UseHttpsRedirection();
+    // app.UseHttpsRedirection();
     app.MapControllers();
     app.MapHealthChecks("/healthz");
     app.Run();
