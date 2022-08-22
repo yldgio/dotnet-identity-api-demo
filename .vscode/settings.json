@@ -5,10 +5,10 @@
             "auth_path":"auth"
         },
         "dev":{
-            "host":"https://localhost:7239"
+            "host":"https://localhost:7257"
         },
         "test":{
-            "host":"https://localhost:7239"
+            "host":"https://localhost:7257"
         }
 
     }
