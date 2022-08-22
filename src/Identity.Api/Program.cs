@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services
         .AddPresentationDependencies()
         .AddApplicationDependencies()
-        .AddInfrastructureDependencies(builder.Configuration);
-
+        .AddInfrastructureDependencies(builder.Configuration)
+        .AddHealthChecks();
 }
 
 var app = builder.Build();
@@ -17,5 +17,6 @@ var app = builder.Build();
     app.UseExceptionHandler(errorHandlingPath: "/error");
     app.UseHttpsRedirection();
     app.MapControllers();
+    app.MapHealthChecks("/healthz");
     app.Run();
 }
