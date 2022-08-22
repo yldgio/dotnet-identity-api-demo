@@ -21,7 +21,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - uses: actions/cryptic-wizard/run-specflow-tests@v1.3.1
+    - uses: cryptic-wizard/run-specflow-tests@v1.3.1
       with:
         test-assembly-path: tests/Identity.Api.Tests.Acceptance/bin/Release/net6.0
         test-assembly-dll: Identity.Api.Tests.Acceptance.dll
