@@ -1,14 +1,7 @@
-using System.Reflection;
-
-using ErrorOr;
-
 using FluentValidation;
-
-using Identity.Api.Application.Authentication.Commands;
-using Identity.Api.Application.Authentication.Common;
 using Identity.Api.Application.Common.Behaviors;
-
 using MediatR;
+using System.Reflection;
 namespace Identity.Api.Application;
 
 public static class DependencyInjection

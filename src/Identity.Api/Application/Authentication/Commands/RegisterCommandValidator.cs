@@ -1,8 +1,5 @@
-using System.Text.RegularExpressions;
-
 using FluentValidation;
-
-using Identity.Api.Application.Authentication.Commands;
+using System.Text.RegularExpressions;
 
 namespace Identity.Api.Application.Authentication.Commands;
 

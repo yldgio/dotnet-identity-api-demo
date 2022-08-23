@@ -1,6 +1,6 @@
 using Identity.Api.Application.Authentication.Commands;
 using Identity.Api.Application.Authentication.Common;
-using Identity.Api.Application.Authentication.Queries.Login;
+using Identity.Api.Application.Authentication.Queries;
 using Identity.Contracts.Auth;
 
 using Mapster;

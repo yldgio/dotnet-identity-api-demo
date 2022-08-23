@@ -1,5 +1,4 @@
 using Identity.Api.Application.Common.Interfaces;
-using Identity.Api.Infrastructure;
 using Identity.Api.Infrastructure.Config;
 
 namespace Identity.Api.Infrastructure;

@@ -3,9 +3,6 @@ using ErrorOr;
 using FluentValidation;
 using FluentValidation.Results;
 
-using Identity.Api.Application.Authentication.Commands;
-using Identity.Api.Application.Authentication.Common;
-
 using MediatR;
 
 namespace Identity.Api.Application.Common.Behaviors;

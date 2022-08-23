@@ -1,7 +1,5 @@
 using FluentValidation;
 
-using Identity.Api.Application.Authentication.Queries.Login;
-
 namespace Identity.Api.Application.Authentication.Queries;
 
 public class LoginQueryValidator : AbstractValidator<LoginQuery>
