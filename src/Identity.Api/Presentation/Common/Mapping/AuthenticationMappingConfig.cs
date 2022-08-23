@@ -1,6 +1,6 @@
-using Identity.Api.Application.Authentication.Commands;
+using Identity.Api.Application.Authentication.Commands.Register;
 using Identity.Api.Application.Authentication.Common;
-using Identity.Api.Application.Authentication.Queries;
+using Identity.Api.Application.Authentication.Queries.Login;
 using Identity.Contracts.Auth;
 
 using Mapster;
@@ -16,5 +16,8 @@ public class AuthenticationMappingConfig : IRegister
         .Map(dest => dest, src => src.User); //can be skipped
         config.NewConfig<RegisterRequest, RegisterCommand>();
         config.NewConfig<LoginRequest, LoginQuery>();
+        config.NewConfig<IdentityResult, IdentityResponse>()
+                .Map(dest => dest, src => src.User);
+
     }
 }

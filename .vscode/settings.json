@@ -2,7 +2,8 @@
     "rest-client.environmentVariables": {
 
         "$shared": {
-            "auth_path":"auth"
+            "auth_path":"auth",
+            "identity_path": "identity"
         },
         "dev":{
             "host":"https://localhost:7257"

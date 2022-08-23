@@ -7,7 +7,7 @@ using Identity.Api.Domain.Entities;
 
 using MediatR;
 
-namespace Identity.Api.Application.Authentication.Commands;
+namespace Identity.Api.Application.Authentication.Commands.Register;
 
 public class RegisterCommandHandler :
     IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>

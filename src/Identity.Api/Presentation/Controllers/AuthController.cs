@@ -2,19 +2,20 @@ namespace Identity.Api.Presentation.Controllers;
 
 using ErrorOr;
 
-using Identity.Api.Application.Authentication.Commands;
+using Identity.Api.Application.Authentication.Commands.Register;
 using Identity.Api.Application.Authentication.Common;
-using Identity.Api.Application.Authentication.Queries;
+using Identity.Api.Application.Authentication.Queries.Login;
 using Identity.Api.Application.Common.Errors;
 using Identity.Contracts.Auth;
 
 using MapsterMapper;
 
 using MediatR;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [Route("[controller]")]
+[AllowAnonymous]
 public class AuthController : ApiController
 {
     private readonly ISender _mediator;

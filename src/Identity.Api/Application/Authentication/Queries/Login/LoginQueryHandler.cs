@@ -7,7 +7,7 @@ using Identity.Api.Domain.Entities;
 
 using MediatR;
 
-namespace Identity.Api.Application.Authentication.Queries;
+namespace Identity.Api.Application.Authentication.Queries.Login;
 
 public class LoginQueryHandler :
     IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>

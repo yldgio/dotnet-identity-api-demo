@@ -1,7 +1,7 @@
 using FluentValidation;
 using System.Text.RegularExpressions;
 
-namespace Identity.Api.Application.Authentication.Commands;
+namespace Identity.Api.Application.Authentication.Commands.Register;
 
 public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 {
