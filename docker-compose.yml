@@ -7,7 +7,7 @@ services:
       context: src
       dockerfile: Identity.Api/Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Release
+      - ASPNETCORE_ENVIRONMENT=Development
       - JwtSettings__Secret=super-secret-key
       - JwtSettings__ExpiryMinutes=60
       - JwtSettings__Issuer=myself
