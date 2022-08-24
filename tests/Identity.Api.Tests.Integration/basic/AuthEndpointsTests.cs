@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using System.Net;
 
-namespace Identity.Api.Tests.Integration;
+namespace Identity.Api.Tests.Integration.basic;
 public class AuthEndpointsTests : IdentityApiBaseTest
 {
     [Fact]
@@ -12,7 +12,7 @@ public class AuthEndpointsTests : IdentityApiBaseTest
         var request = _registerRequestFaker.Generate();
 
         // Act
-        var response = await RegisterAsync(request);
+        var response = await _registrationHandler.RegisterAsync(request);
 
         // Assert
         response.Should().NotBeNull();
@@ -26,9 +26,9 @@ public class AuthEndpointsTests : IdentityApiBaseTest
         // Arrange
         var request = _registerRequestFaker
             .Generate();
-        await SendRegisterAsync(request);
+        await _registrationHandler.SendRegisterAsync(request);
         // Act
-        var dupResponse = await SendRegisterAsync(request);
+        var dupResponse = await _registrationHandler.SendRegisterAsync(request);
         // Assert
         dupResponse.StatusCode.Should().Be(HttpStatusCode.Conflict);
     }
@@ -43,7 +43,7 @@ public class AuthEndpointsTests : IdentityApiBaseTest
             .RuleFor(r => r.Username, f => string.Empty)
             .Generate();
         // Act
-        var response = await SendRegisterAsync(request);
+        var response = await _registrationHandler.SendRegisterAsync(request);
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
     }
