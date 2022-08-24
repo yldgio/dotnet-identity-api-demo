@@ -9,6 +9,9 @@
     <ProjectReference Include="..\Identity.Contracts\Identity.Contracts.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <InternalsVisibleTo Include="$(AssemblyName).Tests.Integration" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="ErrorOr" Version="0.2.0" />
     <PackageReference Include="FluentValidation" Version="11.2.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.1" />
