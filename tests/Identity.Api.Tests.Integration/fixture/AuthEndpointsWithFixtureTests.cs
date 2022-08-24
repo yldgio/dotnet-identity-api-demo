@@ -6,15 +6,12 @@ using System.Net;
 namespace Identity.Api.Tests.Integration.fixture;
 public class AuthEndpointsWithFixtureTests : IClassFixture<IdentityApiFactory>
 {
-    private readonly HttpClient _httpClient;
-    protected readonly Faker<RegisterRequest> _registerRequestFaker;
+    protected readonly Faker<RegisterRequest> _registerRequestFaker = TestUtils.ValidRagistrationFaker();
     private readonly RegistrationHandler _registrationHandler;
 
     public AuthEndpointsWithFixtureTests(IdentityApiFactory factory)
     {
-        _httpClient = factory.CreateClient();
-        _registerRequestFaker = TestUtils.ValidRagistrationFaker();
-        _registrationHandler = new RegistrationHandler(_httpClient);
+        _registrationHandler = new RegistrationHandler(factory.CreateClient());
     }
 
     [Fact]
