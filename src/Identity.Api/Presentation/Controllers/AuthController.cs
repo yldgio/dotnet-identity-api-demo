@@ -27,11 +27,11 @@ public class AuthController : ApiController
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginRequest request)
+    public async Task<IActionResult> Login(LoginRequest request, CancellationToken cancellationToken)
     {
         var query = _mapper.Map<LoginQuery>(request);
 
-        var result = await _mediator.Send(query);
+        var result = await _mediator.Send(query, cancellationToken);
         if (result.IsError && result.FirstError == Errors.Login.InvalidCredentials)
         {
             return Problem(statusCode: StatusCodes.Status401Unauthorized,
@@ -44,17 +44,16 @@ public class AuthController : ApiController
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterRequest request)
+    public async Task<IActionResult> Register(RegisterRequest request, CancellationToken cancellationToken)
     {
         var command = _mapper.Map<RegisterCommand>(request);
 
-        ErrorOr<AuthenticationResult> result = await _mediator.Send(command);
+        ErrorOr<AuthenticationResult> result = await _mediator.Send(command, cancellationToken);
 
         return result.Match(
             authRresult => Ok(MapAuthResult(authRresult)),
             errors => Problem(errors)
         );
-        // return Ok(MapAuthResult(result));
     }
 
     private AuthResponse MapAuthResult(AuthenticationResult result)
