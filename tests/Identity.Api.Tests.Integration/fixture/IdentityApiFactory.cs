@@ -14,7 +14,19 @@ public class IdentityApiFactory : WebApplicationFactory<Program>
         builder.UseEnvironment("Development");
         /// <summary>
         /// example of overriding services or services configuration
-        /* builder.ConfigureTestServices(services =>
+
+        /* 
+        builder.ConfigureAppConfiguration(config =>
+        {
+            Configuration = new ConfigurationBuilder()
+                .AddJsonFile("integrationsettings.json")
+                .Build();
+ 
+            config.AddConfiguration(Configuration);
+        });
+        
+        
+        builder.ConfigureTestServices(services =>
         {
            services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
