@@ -12,7 +12,7 @@ variables:
 name: $(version).$(build.buildId)
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 
 steps:
