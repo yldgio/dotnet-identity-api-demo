@@ -5,16 +5,15 @@ variables:
   minor: 1
   patch: $[counter(variables['minor'], 1)]
   version: $[format('{0}.{1}.{2}', variables['major'], variables['minor'], variables['patch'])]
+  solution: 'ErrorFlow.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
 
 name: $(version).$(build.buildId)
 
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  solution: 'ErrorFlow.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
 
 steps:
 - task: NuGetToolInstaller@1
