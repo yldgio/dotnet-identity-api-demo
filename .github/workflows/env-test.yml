@@ -12,18 +12,33 @@ jobs:
     environment: dev
     steps:
     - uses: actions/checkout@v3
-    - name: PowerShell script
-      uses: Amadevus/pwsh-script@v2.0.1
+    - name: Bash Action 0
+      uses: rethab/bash-action@v1
       with:
-        # PowerShell script to execute in Actions-hydrated context
-        script: echo "${{ secrets.MY_SECRET }} ${{ env.MY_SECRET }}"
-  rel:
+        command: echo
+        # If the command is greet, the name to greet
+        who: ${{ secrets.MY_SECRET }}
+    - name: Bash Action 1
+      uses: rethab/bash-action@v1
+      with:
+        command: echo
+        # If the command is greet, the name to greet
+        who: ${{ env.MY_SECRET }}
+  release:
     runs-on: ubuntu-latest
     environment: prod
+    needs: build
     steps:
     - uses: actions/checkout@v3
-    - name: PowerShell script
-      uses: Amadevus/pwsh-script@v2.0.1
+    - name: Bash Action 0
+      uses: rethab/bash-action@v1
       with:
-        # PowerShell script to execute in Actions-hydrated context
-        script: echo "${{ secrets.MY_SECRET }} ${{ env.MY_SECRET }}"
+        command: echo
+        # If the command is greet, the name to greet
+        who: ${{ secrets.MY_SECRET }}
+    - name: Bash Action 1
+      uses: rethab/bash-action@v1
+      with:
+        command: echo
+        # If the command is greet, the name to greet
+        who: ${{ env.MY_SECRET }}
