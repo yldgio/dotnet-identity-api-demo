@@ -13,33 +13,11 @@ jobs:
     environment: dev
     steps:
     - uses: actions/checkout@v3
-    - name: Bash Action 0
-      uses: rethab/bash-action@v1
-      with:
-        command: echo
-        # If the command is greet, the name to greet
-        who: ${{ secrets.MY_SECRET }}
-    - name: Bash Action 1
-      uses: rethab/bash-action@v1
-      with:
-        command: echo
-        # If the command is greet, the name to greet
-        who: ${{ env.MY_SECRET }}
+    - run: echo "${{ secrets.MY_SECRET }}"
   release:
     runs-on: ubuntu-latest
     environment: prod
     needs: build
     steps:
     - uses: actions/checkout@v3
-    - name: Bash Action 0
-      uses: rethab/bash-action@v1
-      with:
-        command: echo
-        # If the command is greet, the name to greet
-        who: ${{ secrets.MY_SECRET }}
-    - name: Bash Action 1
-      uses: rethab/bash-action@v1
-      with:
-        command: echo
-        # If the command is greet, the name to greet
-        who: ${{ env.MY_SECRET }}
+    - run: echo "${{ secrets.MY_SECRET }}"
