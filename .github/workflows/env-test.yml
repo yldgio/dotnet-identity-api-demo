@@ -1,4 +1,4 @@
-name: .NET
+name: Sample Running Jobs With Environments
 
 on:
   push:
