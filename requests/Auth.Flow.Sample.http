@@ -1,0 +1,33 @@
+# @name register
+
+@username = "giovanni@samples.demo"
+POST {{host}}/{{auth_path}}/register
+Content-Type: application/json
+
+{
+    "firstName": "Giovanni",
+    "lastName": "demo",
+    "username": {{username}},
+    "password": "S0meValidpa$$wd"
+}
+
+###
+
+# @name login
+POST {{host}}/{{auth_path}}/login
+Content-Type: application/json
+
+{
+    "username": {{username}},
+    "password": "S0meValidpa$$wd"
+}
+
+
+### 
+
+@authToken = {{login.response.body.token}}
+@autUsername = {{login.response.body.username}}
+
+Get {{host}}/{{identity_path}}/get/{{autUsername}}
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
