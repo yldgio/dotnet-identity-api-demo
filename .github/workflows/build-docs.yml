@@ -20,7 +20,7 @@ jobs:
       working-directory: OpenApi
       run: npx @redocly/cli bundle ./openapi.yml -o ../Docs/OpenApi/openapi.yml
     - name: cp readme
-      run: cp ./README.md ../Docs/README.md
+      run: cp ./README.md ./Docs/README.md
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
