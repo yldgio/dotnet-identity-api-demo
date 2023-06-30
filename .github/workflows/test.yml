@@ -32,8 +32,9 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - uses: cryptic-wizard/run-specflow-tests@v1.3.1
+    - uses: cryptic-wizard/run-specflow-tests@v1.3.2
       with:
         test-assembly-path: tests/Identity.Api.Tests.Acceptance/bin/Release/net7.0
         test-assembly-dll: Identity.Api.Tests.Acceptance.dll
         output-html: LivingDoc.html
+        framework: net7.0
