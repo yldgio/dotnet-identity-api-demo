@@ -30,6 +30,8 @@ Files are organized in folders representing the different layers ... for demonst
 checkout:
 
 - [Github pages](https://yldgio.github.io/dotnet-identity-api-demo/)
+- [Open Api SPECS](https://yldgio.github.io/dotnet-identity-api-demo/OpenApi/)
+
 - [Control Flow](Docs/ControlFlow.md)
 - [Error Handling](Docs/ErrorHandling.md)
 - [OpenApi with specs](Docs/OpenApi.md)
