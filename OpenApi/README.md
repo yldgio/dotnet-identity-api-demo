@@ -14,6 +14,6 @@ npx @redocly/cli bundle ./openapi.yml -o ../Docs/OpenApi/openapi.yml
 ```
 
 To navigate the OpenApi Spec with redoc open the following file in a browser:
-[redoc.html](./Docs/OpenApi/redoc.html)
+[redoc.html](OpenApi/redoc.html)
 To navigate with Elements
-[elements.html](./Docs/OpenApi/elements.html)
+[elements.html](OpenApi/elements.html)

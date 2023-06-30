@@ -8,7 +8,7 @@ ex:
 see [DuplicateUsernameException.cs](/Identity.Api/Domain/Common/Exceptions/DuplicateUsernameException.cs) implementing [IDomainException](/Identity.Api/Domain/Common/Exceptions/IDomainException.cs) and [controller implementation](/Identity.Api/Controllers/ErrorsController.cs)
 
 Load test result for exception flow
-![load test result](/Docs/exception-load-test.png)
+![load test result](exception-load-test.png)
 
 ## Using Functional Patterns
 
@@ -23,7 +23,7 @@ see [DuplicateUsernameError.cs](/Identity.Api/Domain/Common/Errors/DuplicateUser
 and implementation of [IAuthService.Register](/Identity.Api/Domain/Services/AuthService.cs)
 
 Load test result for Result flow
-![load test result](/Docs/oneof-load-test.png)
+![load test result](oneof-load-test.png)
 
 ### Using FluentResults
 
