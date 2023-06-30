@@ -6,18 +6,16 @@ on:
     paths:
     - "src/**"
     - "tests/**"
+    - "OpenApi/**"
   pull_request:
     branches: [ "main" ]
     paths:
     - "src/**"
     - "tests/**"
-  workflow_dispatch:
-
+    - "OpenApi/**"
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Install and Build OpenAPI
