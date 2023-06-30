@@ -140,14 +140,14 @@ components:
         title: One or more validation errors occurred.
         status: 400
         traceId: 00-b6c28176d2d57a1af7a1bf8ce3f59b14-443790f568dbb6fe-00
-        errors: null
-        Password:
-          - Password is required.
-          - Password must contain at least 1 symbol, 1 number, 1 upper-case char and 1 lower-case char
-        Username:
-          - Username is required.
-        FirstName:
-          - '''First Name'' must be between 3 and 255 characters. You entered 0 characters.'
+        errors:
+          Password:
+            - Password is required.
+            - Password must contain at least 1 symbol, 1 number, 1 upper-case char and 1 lower-case char
+          Username:
+            - Username is required.
+          FirstName:
+            - '''First Name'' must be between 3 and 255 characters. You entered 0 characters.'
     user-not-found-problem-details:
       allOf:
         - $ref: '#/components/schemas/ProblemDetails'
