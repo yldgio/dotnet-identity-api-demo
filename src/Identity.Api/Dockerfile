@@ -3,7 +3,10 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY . ./
+COPY src/ ./
+RUN ls -la
+COPY Docs/OpenApi/openapi.yml ./Identity.Api/openapi.yml
+RUN sed -i 's|..\\..\\Docs\\OpenApi\\||g' ./Identity.Api/Identity.Api.csproj
 RUN dotnet restore ./Identity.Api/
 RUN dotnet build ./Identity.Api/ -c Release -o /app/build
 

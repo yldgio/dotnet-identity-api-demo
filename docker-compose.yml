@@ -4,8 +4,8 @@ services:
   identity:
     image: ${DOCKER_REGISTRY-}identity
     build:
-      context: src
-      dockerfile: Identity.Api/Dockerfile
+      context: .
+      dockerfile: src/Identity.Api/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - JwtSettings__Secret=super-secret-key
