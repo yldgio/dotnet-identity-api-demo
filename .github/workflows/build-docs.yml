@@ -3,9 +3,12 @@ name: Build & deploy OpenApi docs
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "OpenApi/**"
   pull_request:
     branches: [ "main" ]
-
+    paths:
+      - "OpenApi/**"  
 jobs:
   build:
     runs-on: ubuntu-latest
