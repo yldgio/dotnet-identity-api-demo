@@ -3,7 +3,6 @@ content:
   application/problem+json:
     schema:
       $ref: './ProblemDetails.yml'
-    type: object
     example:
       type: 'https://tools.ietf.org/html/rfc7231#section-6.5.1'
       title: "Username already exists"

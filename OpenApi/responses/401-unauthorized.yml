@@ -2,8 +2,7 @@ description: 401 Unauthorized
 content: 
   application/problem+json:
     schema:
-      - $ref: './ProblemDetails.yml'
-    type: object
+      $ref: './ProblemDetails.yml'
     example:
       type: 'https://tools.ietf.org/html/rfc7231#section-6.5.1'
       title: "Invalid Credentials"
