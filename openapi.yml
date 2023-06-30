@@ -1,0 +1,232 @@
+openapi: 3.0.0
+info:
+  title: Identity api
+  version: 1.0.0
+  description: Stupid Simple Identity web api to demonstrate error flows in dotnet core
+  contact:
+    name: Giovanni Ferrara
+    email: yldgio@gmail.com
+    url: https://github.com/yldgio
+tags:
+  - name: Identity
+    description: Identity api
+  - name: Authentication
+    description: Authentication api
+  - name: Example
+    description: Example code for error flow
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register a new user
+      description: ''
+      operationId: RegisterUser
+      requestBody:
+        description: User object that needs to be added to the store
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/200-ok-auth-response'
+        '400':
+          $ref: '#/components/responses/400-bad-request'
+        '409':
+          $ref: '#/components/responses/409-user-exists'
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login with a user
+      description: ''
+      operationId: LoginUser
+      requestBody:
+        description: User object that needs to be authenticated
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/200-ok-auth-response'
+        '400':
+          $ref: '#/components/responses/400-bad-request'
+        '401':
+          $ref: '#/components/responses/401-unauthorized'
+        '404':
+          $ref: '#/components/responses/404-user-not-found'
+        '409':
+          $ref: '#/components/responses/409-conflict'
+  /identity/get/{username}:
+    get:
+      tags:
+        - Identity
+      summary: Get user by username
+      description: ''
+      operationId: GetUser
+      parameters:
+        - name: username
+          in: path
+          description: The username for the user to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/200-ok-auth-response'
+        '400':
+          $ref: '#/components/responses/400-bad-request'
+        '404':
+          $ref: '#/components/responses/404-user-not-found'
+components:
+  schemas:
+    AuthRequest:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - username
+        - password
+      properties:
+        firstName:
+          type: string
+          example: Giovanni
+        lastName:
+          type: string
+          example: Demo
+        username:
+          type: string
+          example: giovanni@test.demo
+        password:
+          type: string
+          example: S0meValidpa$$wd
+          format: password
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        detail:
+          type: string
+        status:
+          type: integer
+        traceId:
+          type: string
+        extensions:
+          type: object
+      required:
+        - title
+        - status
+      example:
+        type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+        title: Username already exists
+        status: 409
+        traceId: 00-b6c28176d2d57a1af7a1bf8ce3f59b14-443790f568dbb6fe-00
+    ValidationProblemDetails:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+      type: object
+      properties:
+        errors:
+          type: object
+      example:
+        type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+        title: One or more validation errors occurred.
+        status: 400
+        traceId: 00-b6c28176d2d57a1af7a1bf8ce3f59b14-443790f568dbb6fe-00
+        errors: null
+        Password:
+          - Password is required.
+          - Password must contain at least 1 symbol, 1 number, 1 upper-case char and 1 lower-case char
+        Username:
+          - Username is required.
+        FirstName:
+          - '''First Name'' must be between 3 and 255 characters. You entered 0 characters.'
+    user-not-found-problem-details:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+      type: object
+      example:
+        type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+        title: User not found
+        status: 404
+        traceId: 00-b6c28176d2d57a1af7a1bf8ce3f59b14-443790f568dbb6fe-00
+  responses:
+    200-ok-auth-response:
+      description: Auth Request Response for both register and login actions
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 5f62f48e-bf69-49f5-b64e-af69f49f69f9
+                format: guid
+              firstName:
+                type: string
+                example: Giovanni
+              lastName:
+                type: string
+                example: Demo
+              username:
+                type: string
+                example: giovanni@test.demo
+              token:
+                type: string
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJnaW92YW5uaUB0ZXN0LmRlbW8iLCJqdGkiOiI5ZjYyZjQ4ZS1iZjY5LTQ5ZjUtYjY0ZS1hZjY5ZjQ5ZjY5ZjkiLCJpYXQiOjE1NzQ4NjY0NzUsIm5iZiI6MTU3NDg2NjQ3NSwiZXhwIjoxNTc0ODY2NTc1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMD
+                format: jwt
+            example:
+              id: 1aaf1133-ab26-49ca-b2a0-82908d4256d5
+              username: giovanni@samples.demo
+              firstName: Giovanni
+              lastName: demo
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxYWFmMTEzMy1hYjI2LTQ5Y2EtYjJhMC04MjkwOGQ0MjU2ZDUiLCJnaXZlbl9uYW1lIjoiR2lvdmFubmkiLCJmYW1pbHlfbmFtZSI6ImRlbW8iLCJqdGkiOiJjYTE2MDRlYi1lZGM5LTRkN2MtOWQ4OS1mZjFiODU1ZTA5MzUiLCJleHAiOjE2ODgwNjQ5OTYsImlzcyI6Im15c2VsZiIsImF1ZCI6Im15c2VsZiJ9.RCXcAHhRkWdN0usijM-9trkDUzIIrjAagXatltmPguQ
+    400-bad-request:
+      description: Bad request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ValidationProblemDetails'
+    409-user-exists:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+          type: object
+          example:
+            type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+            title: Username already exists
+            status: 409
+            traceId: 00-b6c28176d2d57a1af7a1bf8ce3f59b14-443790f568dbb6fe-00
+    401-unauthorized:
+      description: 401 Unauthorized
+      content:
+        application/problem+json:
+          schema:
+            - $ref: ./ProblemDetails.yml
+          type: object
+          example:
+            type: https://tools.ietf.org/html/rfc7231#section-6.5.1
+            title: Invalid Credentials
+            status: 401
+            traceId: 00-b6c28176d2d57a1af7a1bf8ce3f59b14-443790f568dbb6fe-00
+    404-user-not-found:
+      description: 404 Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/user-not-found-problem-details'
+    409-conflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
