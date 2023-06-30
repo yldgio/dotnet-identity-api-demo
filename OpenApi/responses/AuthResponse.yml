@@ -1,0 +1,22 @@
+schema:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+      example: "5f62f48e-bf69-49f5-b64e-af69f49f69f9"
+      format: "guid"
+    firstName:
+      type: "string"
+    lastName:
+      type: "string"
+    username:
+      type: "string"
+    token:
+      type: "string"
+      format: "jwt"
+  example:
+    id: "1aaf1133-ab26-49ca-b2a0-82908d4256d5"
+    username: "giovanni@samples.demo"
+    firstName: "Giovanni"
+    lastName: "demo"
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxYWFmMTEzMy1hYjI2LTQ5Y2EtYjJhMC04MjkwOGQ0MjU2ZDUiLCJnaXZlbl9uYW1lIjoiR2lvdmFubmkiLCJmYW1pbHlfbmFtZSI6ImRlbW8iLCJqdGkiOiJjYTE2MDRlYi1lZGM5LTRkN2MtOWQ4OS1mZjFiODU1ZTA5MzUiLCJleHAiOjE2ODgwNjQ5OTYsImlzcyI6Im15c2VsZiIsImF1ZCI6Im15c2VsZiJ9.RCXcAHhRkWdN0usijM-9trkDUzIIrjAagXatltmPguQ"

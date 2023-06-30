@@ -1,0 +1,11 @@
+description: 401 Unauthorized
+content: 
+  application/problem+json:
+    schema:
+      - $ref: './ProblemDetails.yml'
+    type: object
+    example:
+      type: 'https://tools.ietf.org/html/rfc7231#section-6.5.1'
+      title: "Invalid Credentials"
+      status: 401
+      traceId: '00-b6c28176d2d57a1af7a1bf8ce3f59b14-443790f568dbb6fe-00'      

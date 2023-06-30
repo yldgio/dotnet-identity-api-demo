@@ -1,0 +1,29 @@
+description: "Auth Request Response for both register and login actions"
+content:
+  application/json:
+    schema:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          example: "5f62f48e-bf69-49f5-b64e-af69f49f69f9"
+          format: "guid"
+        firstName:
+          type: "string"
+          example: "Giovanni"
+        lastName:
+          type: "string"
+          example: "Demo"
+        username:
+          type: "string"
+          example: "giovanni@test.demo"
+        token:
+          type: "string"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJnaW92YW5uaUB0ZXN0LmRlbW8iLCJqdGkiOiI5ZjYyZjQ4ZS1iZjY5LTQ5ZjUtYjY0ZS1hZjY5ZjQ5ZjY5ZjkiLCJpYXQiOjE1NzQ4NjY0NzUsIm5iZiI6MTU3NDg2NjQ3NSwiZXhwIjoxNTc0ODY2NTc1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMD"
+          format: "jwt"
+      example:
+        id: "1aaf1133-ab26-49ca-b2a0-82908d4256d5"
+        username: "giovanni@samples.demo"
+        firstName: "Giovanni"
+        lastName: "demo"
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxYWFmMTEzMy1hYjI2LTQ5Y2EtYjJhMC04MjkwOGQ0MjU2ZDUiLCJnaXZlbl9uYW1lIjoiR2lvdmFubmkiLCJmYW1pbHlfbmFtZSI6ImRlbW8iLCJqdGkiOiJjYTE2MDRlYi1lZGM5LTRkN2MtOWQ4OS1mZjFiODU1ZTA5MzUiLCJleHAiOjE2ODgwNjQ5OTYsImlzcyI6Im15c2VsZiIsImF1ZCI6Im15c2VsZiJ9.RCXcAHhRkWdN0usijM-9trkDUzIIrjAagXatltmPguQ"

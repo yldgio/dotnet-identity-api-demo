@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: "Identity api"
+  version: 1.0.0
+  description: "Stupid Simple Identity web api to demonstrate error flows in dotnet core"
+  contact:
+    name: "Giovanni Ferrara"
+    email: "yldgio@gmail.com"
+    url: "https://github.com/yldgio"
+tags:
+  - name: "Identity"
+    description: "Identity api"
+  - name: "Authentication"
+    description: "Authentication api"
+  - name: "Example"
+    description: "Example code for error flow"
+paths:
+  /auth/register:
+    post:
+      tags:
+        - "Authentication"
+      summary: "Register a new user"
+      description: ""
+      operationId: "RegisterUser"
+      requestBody:
+        description: "User object that needs to be added to the store"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthRequest"
+      responses:
+        "200":
+          $ref: "./responses/200-ok-auth-response.yml"
+        "400":
+          $ref: "./responses/400-bad-request.yml"
+        "409":
+          $ref: "./responses/409-user-exists.yml"
+  /auth/login:
+    post:
+      tags:
+        - "Authentication"
+      summary: "Login with a user"
+      description: ""
+      operationId: "LoginUser"
+      requestBody:
+        description: "User object that needs to be authenticated"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthRequest"
+      responses:
+        "200":
+          $ref: "./responses/200-ok-auth-response.yml"
+        "400":
+          $ref: "./responses/400-bad-request.yml"
+        "401":
+          $ref: "./responses/401-unauthorized.yml"
+        "404":
+          $ref: "./responses/404-user-not-found.yml"
+        "409":
+          $ref: "./responses/409-conflict.yml"
+  /identity/get/{username}:
+    get:
+      tags:
+        - "Identity"
+      summary: "Get user by username"
+      description: ""
+      operationId: "GetUser"
+      parameters:
+        - name: "username"
+          in: "path"
+          description: "The username for the user to retrieve"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          $ref: "./responses/200-ok-auth-response.yml"
+        "400":
+          $ref: "./responses/400-bad-request.yml"
+        "404":
+          $ref: "./responses/404-user-not-found.yml"
+components:
+  schemas:
+    AuthRequest:
+      type: "object"
+      required:
+        - "firstName"
+        - "lastName"
+        - "username"
+        - "password"
+      properties:
+        firstName:
+          type: "string"
+          example: "Giovanni"
+        lastName:
+          type: "string"
+          example: "Demo"
+        username:
+          type: "string"
+          example: "giovanni@test.demo"
+        password:
+          type: "string"
+          example: "S0meValidpa$$wd"
+          format: "password"
+      

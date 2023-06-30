@@ -1,0 +1,22 @@
+type: object
+properties: 
+  type:
+    type: string
+  title:
+    type: string
+  detail:
+    type: string
+  status:
+    type: integer
+  traceId:
+    type: string
+  extensions:
+    type: object
+required:
+  - title
+  - status
+example:
+  type: 'https://tools.ietf.org/html/rfc7231#section-6.5.1'
+  title: "Username already exists"
+  status: 409
+  traceId: '00-b6c28176d2d57a1af7a1bf8ce3f59b14-443790f568dbb6fe-00'
