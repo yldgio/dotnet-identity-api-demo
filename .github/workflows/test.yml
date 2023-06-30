@@ -13,16 +13,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Install and Build OpenAPI
+      working-directory: OpenAPI
+      run: npx @redocly/cli bundle ./openapi.yml -o ../Docs/OpenApi/openapi.yml
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - uses: cryptic-wizard/run-specflow-tests@v1.3.1
       with:
-        test-assembly-path: tests/Identity.Api.Tests.Acceptance/bin/Release/net6.0
+        test-assembly-path: tests/Identity.Api.Tests.Acceptance/bin/Release/net7.0
         test-assembly-dll: Identity.Api.Tests.Acceptance.dll
         output-html: LivingDoc.html
