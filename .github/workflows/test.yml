@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install and Build OpenAPI
       working-directory: OpenApi
-      run: npx @redocly/cli bundle ./openapi.yml -o ../Docs/OpenApi/openapi.yml
+      run: npx @redocly/cli bundle ./openapi.yml -o ../Docs/OpenApi/openapi.yaml
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
