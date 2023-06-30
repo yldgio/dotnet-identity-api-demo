@@ -29,6 +29,6 @@ Files are organized in folders representing the different layers ... for demonst
 
 checkout:
 
-- [Control Flow](ControlFlow.md)
-- [Error Handling](ErrorHandling.md)
-- [OpenApi with specs](OpenApi/README.md)
+- [Control Flow](ControlFlow)
+- [Error Handling](ErrorHandling)
+- [OpenApi with specs](OpenApi/)
