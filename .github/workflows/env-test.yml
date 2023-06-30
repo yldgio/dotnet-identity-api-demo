@@ -1,0 +1,23 @@
+name: Sample Running Jobs With Environments
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+    - uses: actions/checkout@v3
+    - run: echo "${{ secrets.MY_SECRET }}"
+  release:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: build
+    steps:
+    - uses: actions/checkout@v3
+    - run: echo "${{ secrets.MY_SECRET }}"
