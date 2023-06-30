@@ -9,8 +9,9 @@
             "host":"https://localhost:7257"
         },
         "test":{
-            "host":"https://localhost:7257"
+            "host":"https://identityapi-demo.azurewebsites.net"
         }
 
-    }
+    },
+    "dotnet.defaultSolution": "ErrorFlow.sln"
 }
