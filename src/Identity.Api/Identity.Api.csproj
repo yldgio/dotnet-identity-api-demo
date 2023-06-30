@@ -20,6 +20,12 @@
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.8" />
+    <PackageReference Include="RendleLabs.OpenApi.Web" Version="0.1.4-beta" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.22.0" />
+  </ItemGroup>
+   <ItemGroup>
+    <EmbeddedResource Include="..\..\Docs\Openapi\openapi.yml">
+      <Link>openapi.yml</Link>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
