@@ -12,10 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Install and Build OpenAPI
-      working-directory: OpenAPI
+      working-directory: OpenApi
       run: npx @redocly/cli bundle ./openapi.yml -o ../Docs/OpenApi/openapi.yml
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: /Docs/OpenApi/dist
+        folder: /Docs/OpenApi
         branch: gh-pages
