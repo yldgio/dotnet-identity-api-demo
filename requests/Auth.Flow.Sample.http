@@ -31,3 +31,8 @@ Content-Type: application/json
 Get {{host}}/{{identity_path}}/get/{{autUsername}}
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
+
+###
+Get {{host}}/{{identity_path}}/get/notavaliduser
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
