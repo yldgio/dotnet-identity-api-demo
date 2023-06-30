@@ -1,0 +1,21 @@
+name: Build & deploy OpenApi docs
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install and Build OpenAPI
+      working-directory: OpenAPI
+      run: npx @redocly/cli bundle ./openapi.yml -o ../Docs/OpenApi/openapi.yml
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: /Docs/OpenApi/dist
+        branch: gh-pages
